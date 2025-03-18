@@ -30,6 +30,7 @@ form.addEventListener('submit', function(e){
     }
     box_resultado.innerHTML = mensagem;
     box_resultado.style.display = 'block';
+    box_resultado.classList.add('fadein');
 })
 
 campoA.addEventListener('keydown',function(){

@@ -45,7 +45,7 @@ input, button{
     margin: 0 auto;
 }
 
-.fadein{
+.fadein{ 
     animation-duration: .1s;
     animation-name: efeito; 
 }
@@ -59,4 +59,3 @@ input, button{
         margin-top: 0%;
     }
 }
-
