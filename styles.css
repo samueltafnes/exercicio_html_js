@@ -1,0 +1,62 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h3{
+    background-color: SteelBlue;
+    color: white;
+    height: min-content;
+    align-content: center;
+    padding: 16px 0;
+    margin-top: 16px;
+}
+
+#formulario{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    max-width: 400px;
+    height: 120px;
+    margin: 16px auto;
+}
+
+input, button{
+    height: 32px;
+    padding: 4px;
+}
+
+.resultado{
+    height: 68px;
+    text-align: center;
+    align-content: center;
+    background-color: SteelBlue;
+    color: white;
+    display: none;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.fadein{
+    animation-duration: .1s;
+    animation-name: efeito; 
+}
+@keyframes efeito {
+    from {
+        scale: 0;
+        margin-top: -10%;
+    }
+    to {
+        scale: 1.0;
+        margin-top: 0%;
+    }
+}
+
