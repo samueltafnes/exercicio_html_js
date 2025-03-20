@@ -1,5 +1,4 @@
 const form = document.getElementById('formulario');
-
 const campoA = document.getElementById('campoA');
 const campoB = document.getElementById('campoB');
 const box_resultado = document.querySelector('.resultado');
@@ -12,6 +11,13 @@ function MaiorValor (valor1, valor2){
     }else {
         return -1;
     }
+}
+
+function exibir_resultado(){
+    box_resultado.style.display = 'block';
+}
+function ocultar_resultado(){
+    box_resultado.style.display = 'none';
 }
 
 form.addEventListener('submit', function(e){
@@ -29,15 +35,36 @@ form.addEventListener('submit', function(e){
             mensagem = `Todos os campos possuem o mesmo valor!`;
     }
     box_resultado.innerHTML = mensagem;
-    box_resultado.style.display = 'block';
-    box_resultado.classList.add('fadein');
+    animar(true);
 })
 
-campoA.addEventListener('keydown',function(){
-    box_resultado.style.display = 'none';
+function animar(in_out){
+    if(in_out){
+        exibir_resultado();
+        box_resultado.classList.remove('fadeout');
+        box_resultado.classList.add('fadein');
+    }else{
+        box_resultado.classList.remove('fadein');
+        box_resultado.classList.add('fadeout');
+    }
+}
+
+campoA.addEventListener('keypress',function(tecla){
     
+    if(tecla.key != 'Enter'){
+        animar(false);
+        setTimeout(() => {
+            ocultar_resultado();
+        }, 200); 
+    }
 })
-campoB.addEventListener('keydown',function(){
-    box_resultado.style.display = 'none';
+
+campoB.addEventListener('keypress',function(tecla){
+    if(tecla.key != 'Enter'){
+        animar(false);
+        setTimeout(() => {
+            ocultar_resultado();
+        }, 200); 
+    }
 })
 
