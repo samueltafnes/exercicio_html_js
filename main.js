@@ -3,7 +3,8 @@ const campoA = document.getElementById('campoA');
 const campoB = document.getElementById('campoB');
 const box_resultado = document.querySelector('.resultado');
 
-function MaiorValor (valor1, valor2){
+
+function getMaiorCampo (valor1, valor2){
     if (valor1 > valor2){
         return 1;
     }else if (valor1 < valor2){
@@ -13,58 +14,49 @@ function MaiorValor (valor1, valor2){
     }
 }
 
-function exibir_resultado(){
-    box_resultado.style.display = 'block';
+function getMensagem(){
+    const msg = {
+        1: `O valor do campo B(${campoB.value}) é <b>menor</b> do que o campo A(${campoA.value})!`,
+        0: `O valor do campo B(${campoB.value}) é <b>maior</b> do que o campo A(${campoA.value})!`
+    }; 
+    return msg[getMaiorCampo(campoA.value, campoB.value)] || "Todos os campos possuem o mesmo valor!";
 }
-function ocultar_resultado(){
-    box_resultado.style.display = 'none';
-}
+
 
 form.addEventListener('submit', function(e){
     e.preventDefault();
-    const compararValor = MaiorValor(campoA.value, campoB.value);
 
-    switch(compararValor){
-        case 1: 
-            mensagem = `O valor do campo B(${campoB.value}) é <b>menor</b> do que o campo A(${campoA.value})!`;
-            break;
-        case 0:
-            mensagem = `O valor do campo B(${campoB.value}) é <b>maior</b> do que o campo A(${campoA.value})!`;
-            break;
-        default:
-            mensagem = `Todos os campos possuem o mesmo valor!`;
-    }
-    box_resultado.innerHTML = mensagem;
+    box_resultado.innerHTML = getMensagem();
+    box_resultado.style.display = 'block';
     animar(true);
 })
 
-function animar(in_out){
-    if(in_out){
-        exibir_resultado();
+
+function animar(entrada_saida){
+    if (entrada_saida){
         box_resultado.classList.remove('fadeout');
         box_resultado.classList.add('fadein');
-    }else{
+    }
+    else{
         box_resultado.classList.remove('fadein');
         box_resultado.classList.add('fadeout');
     }
 }
 
-campoA.addEventListener('keypress',function(tecla){
-    
+campoA.addEventListener('keydown',function(tecla){
     if(tecla.key != 'Enter'){
         animar(false);
         setTimeout(() => {
-            ocultar_resultado();
-        }, 200); 
+            box_resultado.style.display = 'none';
+        }, 200);
     }
 })
 
-campoB.addEventListener('keypress',function(tecla){
+campoB.addEventListener('keydown',function(tecla){
     if(tecla.key != 'Enter'){
         animar(false);
         setTimeout(() => {
-            ocultar_resultado();
-        }, 200); 
+            box_resultado.style.display = 'none';
+        }, 200);
     }
 })
-
